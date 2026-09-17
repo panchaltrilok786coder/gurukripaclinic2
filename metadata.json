@@ -1,0 +1,6 @@
+{
+  "name": "Gurukrupa Skin Clinic",
+  "description": "Premier dermatology, hair transplant & clinical laser skin care clinic by Dr. Mohit Giri & Dr. Pooja Giri in Ulwe, Navi Mumbai.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
