@@ -1,15 +1,15 @@
 /* ==========================================================================
-   Gurukrupa Skin Clinic - High-Performance Vanilla CSS
+   GuruKrupa Skin Clinic - High-Performance Vanilla CSS
    ========================================================================== */
 
 :root {
-  --bg-dark: #0a0c10;
-  --bg-surface: #121620;
-  --bg-surface-elevated: #161c28;
-  --border-color: #222a38;
-  --border-focus: #f4a261;
-  --accent-gold: #f4a261;
-  --accent-gold-hover: #e76f51;
+  --bg-dark: #070f22;
+  --bg-surface: #0d1b3a;
+  --bg-surface-elevated: #12254e;
+  --border-color: #1c3872;
+  --border-focus: #ffffff;
+  --accent-gold: #ffffff;
+  --accent-gold-hover: #bae6fd;
   --text-primary: #f0f2f5;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
@@ -39,6 +39,18 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(1.5px 1.5px at 45px 60px, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 160px 220px, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(2px 2px at 320px 110px, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 480px 310px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 640px 140px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 800px 270px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 960px 80px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 1120px 290px, rgba(255, 255, 255, 0.65), transparent);
+  background-size: 1200px 500px;
+  background-repeat: repeat;
 }
 
 /* Typography Helpers */
@@ -54,7 +66,7 @@ body {
   background: var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: #232c3d;
+  background: #1c3872;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -73,6 +85,254 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header Sticky Compact Transition */
+header#main-header {
+  transition: all 0.3s ease;
+}
+header#main-header.scrolled {
+  background-color: rgba(4, 9, 21, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+header#main-header.scrolled .nav-container {
+  height: 4.25rem;
+}
+
+/* Hero Staggered Animation Sequence */
+@keyframes heroFadeDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroScaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-anim-header { animation: heroFadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.hero-anim-img { animation: heroScaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+.hero-anim-title { animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both; }
+.hero-anim-text { animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+.hero-anim-cta { animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
+
+/* Quick Action Cards */
+.quick-action-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.quick-action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.quick-action-card:hover .quick-icon {
+  transform: scale(1.12);
+  color: #ffffff;
+}
+.quick-icon {
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Horizontal Carousels Base */
+.carousel-viewport {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Six Areas of Care & Featured Treatments Centered Carousels */
+.areas-carousel-viewport,
+.treatment-carousel-viewport {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.areas-carousel-viewport.has-edge-fade,
+.treatment-carousel-viewport.has-edge-fade {
+  /* Subtle vignette fade on outer edges so cards at screen borders soften gracefully */
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+/* Six Areas of Care Carousel Cards:
+   Broader proportion, centered with equal gaps on both sides,
+   allowing left and right cards to peek with faded tone. */
+.area-card {
+  flex: 0 0 84%;
+  max-width: 360px;
+  min-width: 280px;
+  opacity: 0.35;
+  transform: scale(0.92);
+  filter: brightness(0.6) saturate(0.8);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.45s ease,
+              filter 0.45s ease,
+              border-color 0.35s ease,
+              box-shadow 0.45s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .area-card {
+    flex: 0 0 62%;
+    max-width: 440px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .area-card {
+    flex: 0 0 44%;
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .area-card {
+    flex: 0 0 40%;
+    max-width: 530px;
+  }
+}
+
+.area-card:not(.is-active):hover {
+  opacity: 0.6;
+  filter: brightness(0.8) saturate(0.9);
+  transform: scale(0.95);
+}
+
+.area-card.is-active {
+  opacity: 1 !important;
+  transform: scale(1.02) !important;
+  filter: brightness(1) saturate(1) !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 16px 36px -8px rgba(255, 255, 255, 0.25), 0 12px 28px -4px rgba(0, 0, 0, 0.7);
+  cursor: default;
+  z-index: 10;
+}
+
+/* Featured Treatments Carousel Cards:
+   Same broader, centered layout with faded peeking cards */
+.treatment-carousel-card {
+  flex: 0 0 84%;
+  max-width: 360px;
+  min-width: 280px;
+  opacity: 0.35;
+  transform: scale(0.92);
+  filter: brightness(0.6) saturate(0.8);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.45s ease,
+              filter 0.45s ease,
+              border-color 0.35s ease,
+              box-shadow 0.45s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .treatment-carousel-card {
+    flex: 0 0 62%;
+    max-width: 440px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .treatment-carousel-card {
+    flex: 0 0 44%;
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .treatment-carousel-card {
+    flex: 0 0 40%;
+    max-width: 530px;
+  }
+}
+
+.treatment-carousel-card:not(.is-active):hover {
+  opacity: 0.6;
+  filter: brightness(0.8) saturate(0.9);
+  transform: scale(0.95);
+}
+
+.treatment-carousel-card.is-active {
+  opacity: 1 !important;
+  transform: scale(1.02) !important;
+  filter: brightness(1) saturate(1) !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 16px 36px -8px rgba(255, 255, 255, 0.25), 0 12px 28px -4px rgba(0, 0, 0, 0.7);
+  cursor: default;
+  z-index: 10;
+}
+
+/* Why GuruKrupa Trust Cards */
+.trust-card {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.trust-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Treatment Journey Timeline */
+.journey-step {
+  transition: all 0.3s ease;
+}
+.journey-step.active-step .journey-num {
+  background-color: #ffffff;
+  color: #070f22;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+.journey-step.active-step .journey-card {
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: #12254e;
+}
+
+/* Vertical Sliding / Adaptive Card Experience for Technology & Facilities */
+.tech-stack-container {
+  position: relative;
+  width: 100%;
+  border-radius: 1.5rem;
+  background: #0d1b3a;
+  border: 1px solid #172e5e;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+@keyframes techCardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tech-card-item {
+  display: none;
+  width: 100%;
+  opacity: 0;
+}
+
+.tech-card-item.is-current {
+  display: block;
+  opacity: 1;
+  position: relative;
+  z-index: 10;
+  animation: techCardFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Before & After Comparison Slider */
@@ -102,8 +362,8 @@ body {
   top: 0;
   bottom: 0;
   width: 3px;
-  background: #f4a261;
-  box-shadow: 0 0 12px rgba(244, 162, 97, 0.8);
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
   z-index: 20;
   cursor: ew-resize;
   transform: translateX(-50%);
@@ -116,13 +376,29 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #f4a261;
-  color: #0a0c10;
+  background: #ffffff;
+  color: #070f22;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 14px rgba(0,0,0,0.6);
   pointer-events: none;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  flex: 0 0 100%;
+  transition: transform 0.3s ease;
+}
+@media (min-width: 768px) {
+  .testimonial-card {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+@media (min-width: 1024px) {
+  .testimonial-card {
+    flex: 0 0 calc(33.333% - 1rem);
+  }
 }
 
 /* Interactive Accordions */
@@ -137,13 +413,35 @@ body {
 }
 .faq-item.active .faq-icon {
   transform: rotate(45deg);
-  color: #f4a261;
+  color: #ffffff;
+}
+
+/* Ambient Glow for Final CTA */
+@keyframes ambientGlow {
+  0% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.45; transform: translate(-50%, -50%) scale(1.1); }
+  100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
+}
+.ambient-glow {
+  animation: ambientGlow 8s ease-in-out infinite;
+}
+.cta-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 580px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(186, 230, 253, 0.1) 45%, transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+  animation: ambientGlow 8s ease-in-out infinite;
 }
 
 /* Custom Buttons & Pills */
 .btn-gold {
-  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
-  color: #0c0e12;
+  background: linear-gradient(135deg, #ffffff 0%, #bae6fd 100%);
+  color: #070f22;
   font-weight: 700;
   border: none;
   cursor: pointer;
@@ -152,24 +450,124 @@ body {
 .btn-gold:hover {
   filter: brightness(1.08);
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(244, 162, 97, 0.3);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
 }
 
 .btn-outline {
-  background: #151b26;
-  border: 1px solid #283447;
+  background: #0d1b3a;
+  border: 1px solid #254d9c;
   color: #e2e8f0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .btn-outline:hover {
-  background: #1c2433;
-  border-color: #f4a261;
+  background: #172e5e;
+  border-color: #ffffff;
   color: #ffffff;
 }
 
 /* Active Nav Link Styling */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link .nav-star {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
 .nav-link.active {
-  color: #f4a261 !important;
-  border-bottom: 2px solid #f4a261;
+  color: #ffffff !important;
+  border-bottom: 2px solid #ffffff;
+}
+
+.nav-link.active .nav-star {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Mobile Drawer Nav Link Styling */
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.mobile-nav-link:hover {
+  color: #ffffff;
+  background-color: #12254e;
+}
+
+.mobile-nav-link .mobile-nav-star {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #ffffff;
+  font-size: 0.875rem;
+  pointer-events: none;
+}
+
+.mobile-nav-link.active {
+  color: #ffffff !important;
+  background-color: #12254e;
+  border-left-color: #ffffff;
+}
+
+.mobile-nav-link.active .mobile-nav-star {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Treatment Dropdown Active Item (Shines in Star-like White only when selected / active page) */
+.treatment-dropdown-item.active {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
+}
+
+.treatment-dropdown-item.active .dropdown-item-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.treatment-dropdown-item.active .dropdown-item-badge {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.mobile-treatment-sublink.active {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  background-color: #12254e !important;
+  border-left: 3px solid #ffffff !important;
+  padding-left: 0.65rem !important;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Accessibility / Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
