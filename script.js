@@ -330,7 +330,15 @@ const ROUTE_ALIASES = {
   'treatments/nail': 'treatment-nail',
   'treatments/laser': 'treatment-laser',
   'treatments/surgery': 'treatment-surgery',
-  'treatments/hair-transplant': 'hair-treatment'
+  'treatments/hair-transplant': 'hair-treatment',
+  'sti': 'treatment-sti',
+  'treatment-sti': 'treatment-sti',
+  'venereology': 'treatment-sti',
+  'std': 'treatment-sti',
+  'stis': 'treatment-sti',
+  'treatments/sti': 'treatment-sti',
+  'treatments/venereology': 'treatment-sti',
+  'treatments/std': 'treatment-sti'
 };
 
 const VALID_PAGES = [
@@ -342,6 +350,7 @@ const VALID_PAGES = [
   'treatment-nail',
   'treatment-laser',
   'treatment-surgery',
+  'treatment-sti',
   'hair-treatment',
   'contact',
   'appointment'
@@ -371,6 +380,7 @@ function navigateTo(pageId) {
     'treatment-nail',
     'treatment-laser',
     'treatment-surgery',
+    'treatment-sti',
     'hair-treatment'
   ].includes(pageId);
 
@@ -420,11 +430,11 @@ function navigateTo(pageId) {
   document.querySelectorAll('.specialty-subnav-btn').forEach(btn => {
     const btnTarget = btn.getAttribute('data-subnav-page');
     if (btnTarget === pageId) {
-      btn.className = 'specialty-subnav-btn px-3 py-1.5 rounded-lg font-bold bg-[#ffffff] text-[#070f22] shadow-sm shadow-[#ffffff]/20 transition-all';
+      btn.className = 'specialty-subnav-btn px-3 py-1.5 rounded-lg font-bold bg-[#c57e6d] text-white shadow-sm shadow-[#c57e6d]/30 transition-all';
     } else if (btnTarget === 'treatments') {
-      btn.className = 'specialty-subnav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-400 hover:text-white hover:bg-[#12254e] transition-all flex items-center gap-1.5';
+      btn.className = 'specialty-subnav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-400 hover:text-white hover:bg-[#15243c] transition-all flex items-center gap-1.5';
     } else {
-      btn.className = 'specialty-subnav-btn px-3 py-1.5 rounded-lg font-medium text-neutral-400 hover:text-white hover:bg-[#12254e] transition-all';
+      btn.className = 'specialty-subnav-btn px-3 py-1.5 rounded-lg font-medium text-neutral-400 hover:text-white hover:bg-[#15243c] transition-all';
     }
   });
 
@@ -432,9 +442,9 @@ function navigateTo(pageId) {
   document.querySelectorAll('.treatment-category-tab').forEach(tab => {
     const tabTarget = tab.getAttribute('data-tab-page');
     if (tabTarget === pageId) {
-      tab.className = 'treatment-category-tab px-4 py-2 rounded-xl text-xs font-bold bg-[#ffffff] text-[#070f22] shadow-md transition-all shrink-0';
+      tab.className = 'treatment-category-tab px-4 py-2 rounded-xl text-xs font-bold bg-[#c57e6d] text-white shadow-md transition-all shrink-0';
     } else {
-      tab.className = 'treatment-category-tab px-4 py-2 rounded-xl text-xs font-semibold bg-[#0d1b3a] text-neutral-300 hover:text-white border border-[#1c3872] hover:border-[#ffffff]/50 transition-all shrink-0';
+      tab.className = 'treatment-category-tab px-4 py-2 rounded-xl text-xs font-semibold bg-[#0f1a2c] text-neutral-300 hover:text-white border border-[#223859] hover:border-[#c57e6d]/50 transition-all shrink-0';
     }
   });
 
@@ -724,11 +734,11 @@ function filterCases(categoryKey) {
   document.querySelectorAll('.ba-filter-btn').forEach(btn => {
     const isTarget = btn.id === `ba-cat-${categoryKey}`;
     if (isTarget) {
-      btn.classList.add('border-[#ffffff]', 'bg-[#12254e]', 'text-[#ffffff]', 'font-bold');
-      btn.classList.remove('border-[#1c3872]', 'bg-[#0d1b3a]', 'text-neutral-400');
+      btn.classList.add('border-[#c57e6d]', 'bg-[#15243c]', 'text-[#c57e6d]', 'font-bold');
+      btn.classList.remove('border-[#223859]', 'bg-[#0f1a2c]', 'text-neutral-400');
     } else {
-      btn.classList.remove('border-[#ffffff]', 'bg-[#12254e]', 'text-[#ffffff]', 'font-bold');
-      btn.classList.add('border-[#1c3872]', 'bg-[#0d1b3a]', 'text-neutral-400');
+      btn.classList.remove('border-[#c57e6d]', 'bg-[#15243c]', 'text-[#c57e6d]', 'font-bold');
+      btn.classList.add('border-[#223859]', 'bg-[#0f1a2c]', 'text-neutral-400');
     }
   });
 
@@ -797,11 +807,11 @@ async function renderCase(index) {
   // Update 15 navigation dots
   document.querySelectorAll('.ba-dot').forEach((dot, idx) => {
     if (idx === index) {
-      dot.classList.add('bg-[#ffffff]', 'w-6');
-      dot.classList.remove('bg-[#1c3872]', 'w-2');
+      dot.classList.add('bg-[#c57e6d]', 'w-6');
+      dot.classList.remove('bg-[#223859]', 'w-2');
     } else {
-      dot.classList.remove('bg-[#ffffff]', 'w-6');
-      dot.classList.add('bg-[#1c3872]', 'w-2');
+      dot.classList.remove('bg-[#c57e6d]', 'w-6');
+      dot.classList.add('bg-[#223859]', 'w-2');
     }
   });
 
@@ -839,11 +849,11 @@ function toggleViewMode(mode) {
     if (splitView) splitView.classList.add('hidden');
     if (sliderView) sliderView.classList.remove('hidden');
     if (btnSlider) {
-      btnSlider.classList.add('bg-[#12254e]', 'text-[#ffffff]', 'border-[#ffffff]/30');
+      btnSlider.classList.add('bg-[#15243c]', 'text-[#c57e6d]', 'border-[#c57e6d]/30');
       btnSlider.classList.remove('text-neutral-400');
     }
     if (btnSplit) {
-      btnSplit.classList.remove('bg-[#12254e]', 'text-[#ffffff]', 'border-[#ffffff]/30');
+      btnSplit.classList.remove('bg-[#15243c]', 'text-[#c57e6d]', 'border-[#c57e6d]/30');
       btnSplit.classList.add('text-neutral-400');
     }
     setSliderPosition(50);
@@ -851,11 +861,11 @@ function toggleViewMode(mode) {
     if (sliderView) sliderView.classList.add('hidden');
     if (splitView) splitView.classList.remove('hidden');
     if (btnSplit) {
-      btnSplit.classList.add('bg-[#12254e]', 'text-[#ffffff]', 'border-[#ffffff]/30');
+      btnSplit.classList.add('bg-[#15243c]', 'text-[#c57e6d]', 'border-[#c57e6d]/30');
       btnSplit.classList.remove('text-neutral-400');
     }
     if (btnSlider) {
-      btnSlider.classList.remove('bg-[#12254e]', 'text-[#ffffff]', 'border-[#ffffff]/30');
+      btnSlider.classList.remove('bg-[#15243c]', 'text-[#c57e6d]', 'border-[#c57e6d]/30');
       btnSlider.classList.add('text-neutral-400');
     }
   }
@@ -964,7 +974,7 @@ function switchImportTab(tabKey) {
     const content = document.getElementById(`tab-content-${key}`);
     if (key === tabKey) {
       if (btn) {
-        btn.className = 'px-3.5 py-1.5 rounded-xl font-bold bg-[#172e5e] text-[#ffffff] border border-[#ffffff]/30 transition-all';
+        btn.className = 'px-3.5 py-1.5 rounded-xl font-bold bg-[#1b2e4b] text-[#c57e6d] border border-[#c57e6d]/30 transition-all';
       }
       if (content) content.classList.remove('hidden');
     } else {
@@ -985,10 +995,10 @@ async function renderCasesEditorList() {
   for (const caseItem of CLINICAL_CASES) {
     const images = await getCaseEffectiveImages(caseItem);
     const row = document.createElement('div');
-    row.className = 'p-2.5 rounded-xl bg-[#070f22] border border-[#172e5e] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs';
+    row.className = 'p-2.5 rounded-xl bg-[#09111e] border border-[#1b2e4b] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs';
     row.innerHTML = `
       <div class="flex items-center gap-2">
-        <span class="font-mono font-bold text-[#ffffff] bg-[#12254e] px-2 py-0.5 rounded border border-[#1c3872]">${caseItem.badge}</span>
+        <span class="font-mono font-bold text-[#c57e6d] bg-[#15243c] px-2 py-0.5 rounded border border-[#223859]">${caseItem.badge}</span>
         <div>
           <p class="font-semibold text-white leading-tight">${caseItem.title}</p>
           <p class="text-[10px] text-neutral-400">${caseItem.category} • ${caseItem.patient}</p>
@@ -996,7 +1006,7 @@ async function renderCasesEditorList() {
       </div>
       <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
         <div class="flex items-center gap-1.5">
-          <div class="w-10 h-10 rounded-lg overflow-hidden border border-[#254d9c] bg-black shrink-0 relative group">
+          <div class="w-10 h-10 rounded-lg overflow-hidden border border-[#2d4b77] bg-black shrink-0 relative group">
             <img src="${images.before}" alt="Before" class="w-full h-full object-cover" />
             <label class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[9px] text-amber-300 font-bold cursor-pointer">
               Edit
@@ -1004,7 +1014,7 @@ async function renderCasesEditorList() {
             </label>
           </div>
           <span class="text-[10px] text-neutral-500">→</span>
-          <div class="w-10 h-10 rounded-lg overflow-hidden border border-[#254d9c] bg-black shrink-0 relative group">
+          <div class="w-10 h-10 rounded-lg overflow-hidden border border-[#2d4b77] bg-black shrink-0 relative group">
             <img src="${images.after}" alt="After" class="w-full h-full object-cover" />
             <label class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[9px] text-emerald-400 font-bold cursor-pointer">
               Edit
@@ -1012,7 +1022,7 @@ async function renderCasesEditorList() {
             </label>
           </div>
         </div>
-        <button type="button" class="text-neutral-400 hover:text-white px-2 py-1 rounded bg-[#12254e] border border-[#1c3872] text-[10px] edit-case-direct-btn" data-case-id="${caseItem.id}">
+        <button type="button" class="text-neutral-400 hover:text-white px-2 py-1 rounded bg-[#15243c] border border-[#223859] text-[10px] edit-case-direct-btn" data-case-id="${caseItem.id}">
           Configure
         </button>
       </div>
@@ -1096,14 +1106,14 @@ async function handlePdfFile(file) {
 
       if (grid) {
         const card = document.createElement('div');
-        card.className = 'rounded-xl bg-[#070f22] border border-[#1c3872] p-1.5 space-y-1';
+        card.className = 'rounded-xl bg-[#09111e] border border-[#223859] p-1.5 space-y-1';
         card.innerHTML = `
           <div class="aspect-[4/3] rounded-lg overflow-hidden bg-black">
             <img src="${pageDataUrl}" class="w-full h-full object-cover" alt="PDF Page ${i}" />
           </div>
           <div class="flex items-center justify-between text-[10px]">
             <span class="text-neutral-400 font-mono">Page ${i}</span>
-            <button type="button" class="text-[#ffffff] hover:underline font-medium assign-page-btn" data-page-idx="${i - 1}">
+            <button type="button" class="text-[#c57e6d] hover:underline font-medium assign-page-btn" data-page-idx="${i - 1}">
               Use for Case
             </button>
           </div>
@@ -1260,16 +1270,16 @@ function initBaImportListeners() {
 
     pdfDropzone.addEventListener('dragover', (e) => {
       e.preventDefault();
-      pdfDropzone.classList.add('border-[#ffffff]', 'bg-[#0d1b3a]');
+      pdfDropzone.classList.add('border-[#c57e6d]', 'bg-[#0f1a2c]');
     });
 
     pdfDropzone.addEventListener('dragleave', () => {
-      pdfDropzone.classList.remove('border-[#ffffff]', 'bg-[#0d1b3a]');
+      pdfDropzone.classList.remove('border-[#c57e6d]', 'bg-[#0f1a2c]');
     });
 
     pdfDropzone.addEventListener('drop', (e) => {
       e.preventDefault();
-      pdfDropzone.classList.remove('border-[#ffffff]', 'bg-[#0d1b3a]');
+      pdfDropzone.classList.remove('border-[#c57e6d]', 'bg-[#0f1a2c]');
       const file = e.dataTransfer.files && e.dataTransfer.files[0];
       if (file && file.type.includes('pdf')) {
         handlePdfFile(file);
@@ -1418,11 +1428,11 @@ function updateAreaCarousel() {
   // Update dots
   dots.forEach((dot, idx) => {
     if (idx === currentAreaIndex) {
-      dot.classList.add('bg-[#ffffff]', 'w-7');
-      dot.classList.remove('bg-[#1c3872]', 'w-2.5');
+      dot.classList.add('bg-[#c57e6d]', 'w-7');
+      dot.classList.remove('bg-[#223859]', 'w-2.5');
     } else {
-      dot.classList.remove('bg-[#ffffff]', 'w-7');
-      dot.classList.add('bg-[#1c3872]', 'w-2.5');
+      dot.classList.remove('bg-[#c57e6d]', 'w-7');
+      dot.classList.add('bg-[#223859]', 'w-2.5');
     }
   });
 }
@@ -1532,11 +1542,11 @@ function updateTreatmentCarousel() {
   // Update dots
   dots.forEach((dot, idx) => {
     if (idx === currentTreatmentIndex) {
-      dot.classList.add('bg-[#ffffff]', 'w-7');
-      dot.classList.remove('bg-[#1c3872]', 'w-2.5');
+      dot.classList.add('bg-[#c57e6d]', 'w-7');
+      dot.classList.remove('bg-[#223859]', 'w-2.5');
     } else {
-      dot.classList.remove('bg-[#ffffff]', 'w-7');
-      dot.classList.add('bg-[#1c3872]', 'w-2.5');
+      dot.classList.remove('bg-[#c57e6d]', 'w-7');
+      dot.classList.add('bg-[#223859]', 'w-2.5');
     }
   });
 }
@@ -1634,11 +1644,11 @@ function setTechCard(index) {
 
   tabs.forEach((tab, idx) => {
     if (idx === currentTechIndex) {
-      tab.classList.add('border-[#ffffff]', 'bg-[#12254e]', 'text-[#ffffff]', 'font-bold');
-      tab.classList.remove('border-[#1c3872]', 'bg-[#0d1b3a]', 'text-neutral-400');
+      tab.classList.add('border-[#c57e6d]', 'bg-[#15243c]', 'text-[#c57e6d]', 'font-bold');
+      tab.classList.remove('border-[#223859]', 'bg-[#0f1a2c]', 'text-neutral-400');
     } else {
-      tab.classList.remove('border-[#ffffff]', 'bg-[#12254e]', 'text-[#ffffff]', 'font-bold');
-      tab.classList.add('border-[#1c3872]', 'bg-[#0d1b3a]', 'text-neutral-400');
+      tab.classList.remove('border-[#c57e6d]', 'bg-[#15243c]', 'text-[#c57e6d]', 'font-bold');
+      tab.classList.add('border-[#223859]', 'bg-[#0f1a2c]', 'text-neutral-400');
     }
   });
 
@@ -1688,11 +1698,11 @@ function updateTestimonialCarousel() {
 
   dots.forEach((dot, idx) => {
     if (idx === currentTestimonialIndex) {
-      dot.classList.add('bg-[#ffffff]', 'w-6');
-      dot.classList.remove('bg-[#1c3872]', 'w-2');
+      dot.classList.add('bg-[#c57e6d]', 'w-6');
+      dot.classList.remove('bg-[#223859]', 'w-2');
     } else {
-      dot.classList.remove('bg-[#ffffff]', 'w-6');
-      dot.classList.add('bg-[#1c3872]', 'w-2');
+      dot.classList.remove('bg-[#c57e6d]', 'w-6');
+      dot.classList.add('bg-[#223859]', 'w-2');
     }
   });
 }
@@ -1767,11 +1777,11 @@ function selectNorwoodStage(stageNum) {
   // Highlight button
   document.querySelectorAll('.norwood-btn').forEach(btn => {
     if (parseInt(btn.getAttribute('data-stage'), 10) === stageNum) {
-      btn.classList.add('border-[#ffffff]', 'bg-[#172e5e]', 'text-[#ffffff]');
-      btn.classList.remove('border-[#1c3872]', 'bg-[#0d1b3a]', 'text-neutral-400');
+      btn.classList.add('border-[#c57e6d]', 'bg-[#1b2e4b]', 'text-[#c57e6d]');
+      btn.classList.remove('border-[#223859]', 'bg-[#0f1a2c]', 'text-neutral-400');
     } else {
-      btn.classList.remove('border-[#ffffff]', 'bg-[#172e5e]', 'text-[#ffffff]');
-      btn.classList.add('border-[#1c3872]', 'bg-[#0d1b3a]', 'text-neutral-400');
+      btn.classList.remove('border-[#c57e6d]', 'bg-[#1b2e4b]', 'text-[#c57e6d]');
+      btn.classList.add('border-[#223859]', 'bg-[#0f1a2c]', 'text-neutral-400');
     }
   });
 }
@@ -1794,21 +1804,21 @@ let bookingState = {
 function selectBookingDay(dayName, btn) {
   bookingState.day = dayName;
   document.querySelectorAll('.day-chip').forEach(b => {
-    b.classList.remove('bg-[#ffffff]', 'text-[#070f22]', 'font-bold');
-    b.classList.add('bg-[#0d1b3a]', 'text-neutral-300');
+    b.classList.remove('bg-[#c57e6d]', 'text-white', 'font-bold');
+    b.classList.add('bg-[#0f1a2c]', 'text-neutral-300');
   });
-  btn.classList.add('bg-[#ffffff]', 'text-[#070f22]', 'font-bold');
-  btn.classList.remove('bg-[#0d1b3a]', 'text-neutral-300');
+  btn.classList.add('bg-[#c57e6d]', 'text-white', 'font-bold');
+  btn.classList.remove('bg-[#0f1a2c]', 'text-neutral-300');
 }
 
 function selectBookingSlot(slotTime, btn) {
   bookingState.slot = slotTime;
   document.querySelectorAll('.slot-chip').forEach(b => {
-    b.classList.remove('bg-[#ffffff]', 'text-[#070f22]', 'font-bold');
-    b.classList.add('bg-[#0d1b3a]', 'text-neutral-300');
+    b.classList.remove('bg-[#c57e6d]', 'text-white', 'font-bold');
+    b.classList.add('bg-[#0f1a2c]', 'text-neutral-300');
   });
-  btn.classList.add('bg-[#ffffff]', 'text-[#070f22]', 'font-bold');
-  btn.classList.remove('bg-[#0d1b3a]', 'text-neutral-300');
+  btn.classList.add('bg-[#c57e6d]', 'text-white', 'font-bold');
+  btn.classList.remove('bg-[#0f1a2c]', 'text-neutral-300');
 }
 
 // ==========================================
@@ -1968,11 +1978,11 @@ function sendContactToWhatsApp() {
 function filterTreatments(category, btn) {
   if (btn) {
     document.querySelectorAll('.treatment-filter-btn').forEach(b => {
-      b.classList.remove('bg-[#ffffff]', 'text-[#070f22]', 'font-bold');
-      b.classList.add('bg-[#0d1b3a]', 'text-neutral-400');
+      b.classList.remove('bg-[#c57e6d]', 'text-white', 'font-bold');
+      b.classList.add('bg-[#0f1a2c]', 'text-neutral-400');
     });
-    btn.classList.add('bg-[#ffffff]', 'text-[#070f22]', 'font-bold');
-    btn.classList.remove('bg-[#0d1b3a]', 'text-neutral-400');
+    btn.classList.add('bg-[#c57e6d]', 'text-white', 'font-bold');
+    btn.classList.remove('bg-[#0f1a2c]', 'text-neutral-400');
   }
 
   document.querySelectorAll('.treatment-card').forEach(card => {
@@ -2161,10 +2171,363 @@ function initApp() {
       mobileMenu.classList.toggle('hidden');
     });
   }
+
+  // Initialize Card Sliders across Home & Treatment Pages
+  initCardSliders();
 }
+
+/* ==========================================================================
+   MULTI-CARD BEFORE & AFTER SLIDER SYSTEM
+   ========================================================================== */
+
+const CLINICAL_CASES_DB = {
+  1: {
+    title: "Dark Lip Melanosis & Border Lightening",
+    image: "/assets/cases/case_01.jpg",
+    category: "Laser Aesthetics",
+    diagnosis: "Severe exogenous & post-inflammatory vermilion hyperpigmentation with irregular melanin clumping.",
+    protocol: "3 Sessions Q-Switched Nd:YAG (532nm/1064nm) laser toning paired with topical lip depigmenting balm.",
+    result: "85% melanin clearance; restored natural rosy vermilion border and smooth lip texture.",
+    timeline: "8 Weeks (3 Sessions)"
+  },
+  2: {
+    title: "Severe Cheek & Jawline Inflammatory Acne Clearance",
+    image: "/assets/cases/case_02.jpg",
+    category: "Clinical Dermatology",
+    diagnosis: "Grade 4 Nodulocystic Acne with painful inflammatory papules, follicular plugging, and early erythematous scarring.",
+    protocol: "Low-dose oral isotretinoin regimen, targeted salicylic acid clinical peels, and non-comedogenic barrier restoration.",
+    result: "95% inflammatory lesion clearance; complete cyst resolution without deep atrophic pitting.",
+    timeline: "12 Weeks"
+  },
+  3: {
+    title: "Parietal Scalp Coin-Shaped Patch Full Recovery",
+    image: "/assets/cases/case_03.jpg",
+    category: "Trichology & Scalp",
+    diagnosis: "Acute Alopecia Areata (focal autoimmune follicular arrest) with distinct exclamation-mark hairs on dermoscopy.",
+    protocol: "Monthly targeted intralesional triamcinolone micro-injections, topical minoxidil 5% co-therapy, and immunomodulators.",
+    result: "100% follicular reactivation and terminal hair coverage matching surrounding scalp density.",
+    timeline: "12 Weeks (3 Sessions)"
+  },
+  4: {
+    title: "Crown Vertex Focal Hair Loss Restoration",
+    image: "/assets/cases/case_04.jpg",
+    category: "Trichology & Scalp",
+    diagnosis: "Early-stage Crown Alopecia Areata with perifollicular inflammation and miniaturization.",
+    protocol: "Bi-weekly Platelet-Rich Plasma (PRP) scalp therapy paired with peptide follicle serums and nutritional correction.",
+    result: "Full closure of vertex thinning patch with robust terminal hair caliber and zero recurrence.",
+    timeline: "14 Weeks"
+  },
+  5: {
+    title: "Crown Vertex & Midline Density Restoration",
+    image: "/assets/cases/case_05.jpg",
+    category: "Trichology & Scalp",
+    diagnosis: "Ludwig Grade II Female Pattern Hair Loss (FPHL) with widened central parting line and severe telogen shedding.",
+    protocol: "Multi-factorial medical trichology: dual DHT blockers, topical nanosomal minoxidil, and customized meso-cocktail infusions.",
+    result: "Significant reduction in parting gap width; 42% increase in trichoscopic hair shaft density.",
+    timeline: "16 Weeks"
+  },
+  6: {
+    title: "Coarse Chin & Submental Hirsutism Removal",
+    image: "/assets/cases/case_06.jpg",
+    category: "Medical Lasers",
+    diagnosis: "Hormonal Hirsutism with dense, deep-rooted coarse terminal hairs on submental chin and jawline.",
+    protocol: "6 Sessions Triple-Wavelength Diode & Nd:YAG Laser Hair Reduction with contact sapphire cooling.",
+    result: "Over 90% permanent follicle reduction; elimination of ingrown pseudofolliculitis and stubble shadow.",
+    timeline: "6 Months (6 Sessions)"
+  },
+  7: {
+    title: "Severe Dystrophic Great Toenail Regeneration",
+    image: "/assets/cases/case_07.jpg",
+    category: "Nail Disorders",
+    diagnosis: "Distal Subungual Onychomycosis with severe subungual hyperkeratosis, crumbling onycholysis, and nail plate yellowing.",
+    protocol: "Oral pulse terbinafine therapy, surgical nail plate chemical debridement, and topical ciclopirox lacquer.",
+    result: "Complete healthy proximal-to-distal clear nail regrowth with full nail plate re-attachment.",
+    timeline: "6 Months"
+  },
+  8: {
+    title: "Microscopic Hair Shaft Caliber & Survival Analysis",
+    image: "/assets/cases/case_08.jpg",
+    category: "Trichology & Scalp",
+    diagnosis: "Diffuse Androgenetic Alopecia (Grade III) with severe vellus miniaturization and yellow dots on trichoscopy.",
+    protocol: "Comprehensive medical trichology protocol: oral finasteride micro-dosing, high-concentration growth factor concentrates (GFC).",
+    result: "Shift from single-hair vellus units to triple-hair terminal follicular clusters; 65% thicker shaft diameter.",
+    timeline: "20 Weeks"
+  },
+  9: {
+    title: "Chronic Lower Leg Pruritic Eczematous Plaque Healing",
+    image: "/assets/cases/case_09.jpg",
+    category: "Clinical Dermatology",
+    diagnosis: "Severe Stasis Eczema & Lichen Simplex Chronicus with intensely pruritic, hyperkeratotic, excoriated plaques.",
+    protocol: "Barrier-repair ceramide therapy, potent short-contact topical anti-inflammatory ointments, and compression guidance.",
+    result: "Total cessation of itching; complete resolution of thickened lichenified skin and epidermal re-epithelialization.",
+    timeline: "4 Weeks"
+  },
+  10: {
+    title: "Stubborn Lip Hyperpigmentation Lightening",
+    image: "/assets/cases/case_10.jpg",
+    category: "Laser Aesthetics",
+    diagnosis: "Chronic post-inflammatory lip melanosis and vermilion border darkening refractory to ordinary balms.",
+    protocol: "Sequential Q-Switched Nd:YAG Laser toning and gentle arginine-lactic depigmenting peel sessions.",
+    result: "Remarkable 85% lightening; restored vibrant, uniform natural lip shade from Sept. 11 to Dec. 20.",
+    timeline: "14 Weeks"
+  },
+  11: {
+    title: "Velvety Neck Hyperpigmentation & Texture Smoothing",
+    image: "/assets/cases/case_11.jpg",
+    category: "Clinical Dermatology",
+    diagnosis: "Severe Acanthosis Nigricans of the posterior and lateral neck with thickened, velvety hyperkeratotic skin folds.",
+    protocol: "Metabolic dietary counselling, topical keratolytics (glycolic 12% + urea 20%), and gentle micro-exfoliation peels.",
+    result: "80% reduction in neck pigmentation darkness; complete disappearance of thick velvety plaque texture.",
+    timeline: "8 Weeks"
+  },
+  12: {
+    title: "Anterior Neck Crease Skin Tags & Pigmentation Rejuvenation",
+    image: "/assets/cases/case_12.jpg",
+    category: "Dermatosurgery",
+    diagnosis: "Multiple Acrochordons (skin tags) clustering along transverse anterior cervical skin creases with post-friction pigmentation.",
+    protocol: "Ultra-fine High-Frequency Radiofrequency (RF) micro-cautery excision under topical eutectic local anesthesia.",
+    result: "100% tag removal in single session; scarless healing with smooth crease contours and zero pigmentary scarring.",
+    timeline: "Single Session (10 Days Healing)"
+  },
+  13: {
+    title: "Deep Toe Plantar Wart Cryo-Ablation",
+    image: "/assets/cases/case_13.jpg",
+    category: "Viral Lesions / Nails",
+    diagnosis: "Endophytic Plantar Verruca (HPV-induced) on toe pulp causing severe point-tenderness and disrupted skin striations.",
+    protocol: "Controlled liquid nitrogen cryosurgery paired with salicylic-lactic keratolytic application and RF core ablation.",
+    result: "Complete eradication of viral verrucous core; restoration of native dermatoglyphic fingerprint skin lines.",
+    timeline: "3 Sessions (6 Weeks)"
+  },
+  14: {
+    title: "Nasal Tip Exophytic Cutaneous Wart Vaporization",
+    image: "/assets/cases/case_14.jpg",
+    category: "Dermatosurgery / STI",
+    diagnosis: "Cutaneous Verruca Vulgaris (HPV) presenting as a conspicuous hyperkeratotic nodule on the nasal tip.",
+    protocol: "Precision Radiosurgical Micro-Vaporization with micro-wire loop preserving underlying cartilage anatomy.",
+    result: "Flawless eradication of lesion; clean cosmetic re-epithelialization without any nasal contour depression or scar.",
+    timeline: "Single Session (14 Days Healing)"
+  },
+  15: {
+    title: "Multiple Facial & Temple Skin Tags (DPN) Removal",
+    image: "/assets/cases/case_15.jpg",
+    category: "Dermatosurgery",
+    diagnosis: "Dermatosis Papulosa Nigra (DPN) & pedunculated facial acrochordons scattered across malar cheeks and periorbital temples.",
+    protocol: "Non-ablative Radiofrequency pinpoint desiccation with magnifying loupes to avoid post-inflammatory hypopigmentation.",
+    result: "Instantaneous vaporization of 25+ lesions; completely smooth facial skin with pristine pigment match.",
+    timeline: "Single Session (7 Days Healing)"
+  },
+  16: {
+    title: "Nevus of Ota Deep Dermal Pigmentation Clearance",
+    image: "/assets/cases/case_16.jpg",
+    category: "Medical Lasers",
+    diagnosis: "Unilateral Oculodermal Melanocytosis (Nevus of Ota) with slate-gray/blue dermal dendritic melanocytes across temple and cheek.",
+    protocol: "Medical-grade Q-Switched 1064nm Nd:YAG Laser selective photothermolysis targeting deep dermal melanosomes.",
+    result: "75% progressive fading of dermal slate-blue discoloration without collateral epidermal texture damage.",
+    timeline: "5 Sessions (10 Months)"
+  },
+  17: {
+    title: "Cheek Pustular Acne & Red Marks Resolution",
+    image: "/assets/cases/case_17.jpg",
+    category: "Clinical Dermatology",
+    diagnosis: "Moderate-to-Severe Acne Vulgaris with prominent Post-Inflammatory Erythema (PIE) and active follicular pustules.",
+    protocol: "Azelaic acid 20% clinical regimen, topical clindamycin/benzoyl peroxide gel, and gentle barrier-repair hydration.",
+    result: "Clear, inflammation-free skin; drastic suppression of erythema and active breakouts.",
+    timeline: "6 Weeks"
+  },
+  18: {
+    title: "Perioral & Vermilion Border Hyperpigmentation Lightening",
+    image: "/assets/cases/case_18.jpg",
+    category: "Laser Aesthetics",
+    diagnosis: "Exogenous smoker's melanosis and sun-induced lip hyperpigmentation with dull bluish-brown lip border.",
+    protocol: "Dual-pulse Q-Switched Nd:YAG laser toning combined with clinical kojic-arbutin pigment inhibitor maintenance.",
+    result: "Pronounced lightening of upper and lower lip margins; restored healthy, even pink tone with sharp definition.",
+    timeline: "8 Weeks (3 Sessions)"
+  },
+  19: {
+    title: "Malar Melasma & Solar Lentigines Transformation",
+    image: "/assets/cases/case_19.jpg",
+    category: "Medical Lasers",
+    diagnosis: "Mixed epidermal-dermal Melasma and solar lentigines forming irregular brown patches across bilateral cheekbones.",
+    protocol: "Low-fluence Nd:YAG laser toning, tranexamic acid mesotherapy, and strict SPF50+ PA++++ broad-spectrum mineral photoprotection.",
+    result: "85% visible clearance of dark brown pigmentation patches; luminous, even-toned skin radiance.",
+    timeline: "12 Weeks"
+  },
+  20: {
+    title: "Upper & Lower Eyelid Margin Skin Tag Excision",
+    image: "/assets/cases/case_20.jpg",
+    category: "Dermatosurgery",
+    diagnosis: "Delicate periocular acrochordons located on mobile upper and lower lid margins causing ocular irritation and cosmetic concern.",
+    protocol: "High-precision Ellman radiofrequency micro-needle excision with protective corneal eye-shield and topical anesthesia.",
+    result: "Complete painless removal with zero eyelid margin notch, zero bleeding, and invisible healing.",
+    timeline: "Single Session (5 Days Healing)"
+  }
+};
+
+/**
+ * Slide card track horizontally by 1 card step
+ * @param {string} trackId - ID of slider container
+ * @param {number} direction - -1 for left, 1 for right
+ */
+function slideCardSlider(trackId, direction) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  const card = track.querySelector('.ba-card-item:not(.hidden)') || track.firstElementChild;
+  const gap = 24; // 1.5rem
+  const cardWidth = card ? card.offsetWidth : 340;
+  const scrollStep = (cardWidth + gap) * direction;
+
+  track.scrollBy({
+    left: scrollStep,
+    behavior: 'smooth'
+  });
+}
+
+/**
+ * Filter home page multi-card before/after cases by category
+ * @param {string} category - all, hair, skin, laser, surgery, nail
+ * @param {HTMLElement} btn - Active button element
+ */
+function filterHomeBaCases(category, btn) {
+  const track = document.getElementById('home-ba-slider-track');
+  const counter = document.getElementById('home-ba-counter');
+  if (!track) return;
+
+  // Update active pill classes
+  const buttons = document.querySelectorAll('.ba-filter-btn');
+  buttons.forEach(b => {
+    b.classList.remove('bg-[#8a4334]', 'text-white', 'border-[#8a4334]', 'shadow-md');
+    b.classList.add('bg-white/80', 'text-[#0f1a2c]', 'border-[#223859]');
+  });
+  if (btn) {
+    btn.classList.add('bg-[#8a4334]', 'text-white', 'border-[#8a4334]', 'shadow-md');
+    btn.classList.remove('bg-white/80', 'text-[#0f1a2c]', 'border-[#223859]');
+  }
+
+  const cards = track.querySelectorAll('.ba-card-item');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-category') || '';
+    if (category === 'all' || cardCat.includes(category)) {
+      card.classList.remove('hidden');
+      card.style.display = '';
+      visibleCount++;
+    } else {
+      card.classList.add('hidden');
+      card.style.display = 'none';
+    }
+  });
+
+  // Scroll back to beginning
+  track.scrollTo({ left: 0, behavior: 'smooth' });
+
+  // Update counter badge
+  if (counter) {
+    const label = category === 'all' 
+      ? `📷 Showing all ${visibleCount} unretouched clinical cases`
+      : `📷 Showing ${visibleCount} unretouched cases for ${category.toUpperCase()}`;
+    counter.innerHTML = `<span>${label}</span>`;
+  }
+}
+
+/**
+ * Open unretouched comparison modal with full clinical details
+ * @param {number} caseId 
+ */
+function openBaCaseModal(caseId) {
+  const modal = document.getElementById('ba-case-modal');
+  const data = CLINICAL_CASES_DB[caseId];
+  if (!modal || !data) return;
+
+  const modalImg = document.getElementById('ba-modal-img');
+  const modalTitle = document.getElementById('ba-modal-title');
+  const modalCat = document.getElementById('ba-modal-category');
+  const modalDiag = document.getElementById('ba-modal-diag');
+  const modalProt = document.getElementById('ba-modal-protocol');
+  const modalRes = document.getElementById('ba-modal-result');
+  const modalTime = document.getElementById('ba-modal-timeline');
+  const modalCaseNum = document.getElementById('ba-modal-casenum');
+
+  if (modalImg) modalImg.src = data.image;
+  if (modalTitle) modalTitle.textContent = data.title;
+  if (modalCat) modalCat.textContent = data.category.toUpperCase();
+  if (modalDiag) modalDiag.textContent = data.diagnosis;
+  if (modalProt) modalProt.textContent = data.protocol;
+  if (modalRes) modalRes.textContent = data.result;
+  if (modalTime) modalTime.textContent = data.timeline;
+  if (modalCaseNum) modalCaseNum.textContent = `CASE #${String(caseId).padStart(2, '0')}`;
+
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Close unretouched comparison modal
+ */
+function closeBaCaseModal() {
+  const modal = document.getElementById('ba-case-modal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+/**
+ * Initialize drag-to-scroll & swipe for all card sliders
+ */
+function initCardSliders() {
+  const tracks = document.querySelectorAll('.card-slider-track');
+  tracks.forEach(track => {
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      // Don't drag if clicking a link or button
+      if (e.target.closest('a, button')) return;
+      isDown = true;
+      track.classList.add('cursor-grabbing');
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+
+    track.addEventListener('mouseleave', () => {
+      isDown = false;
+      track.classList.remove('cursor-grabbing');
+    });
+
+    track.addEventListener('mouseup', () => {
+      isDown = false;
+      track.classList.remove('cursor-grabbing');
+    });
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - walk;
+    });
+  });
+
+  // Modal keyboard close
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeBaCaseModal();
+    }
+  });
+}
+
+// Make functions globally available for inline onclick attributes
+window.slideCardSlider = slideCardSlider;
+window.filterHomeBaCases = filterHomeBaCases;
+window.openBaCaseModal = openBaCaseModal;
+window.closeBaCaseModal = closeBaCaseModal;
+window.initCardSliders = initCardSliders;
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {
   initApp();
 }
+
