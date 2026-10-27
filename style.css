@@ -724,3 +724,37 @@ header#main-header.scrolled .nav-container {
 img, video, canvas, svg {
   max-width: 100%;
 }
+
+/* ==========================================================================
+   IMAGE PERFORMANCE & PROGRESSIVE RENDERING
+   ========================================================================== */
+img {
+  image-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Smooth transition for lazy-loaded images */
+img[loading="lazy"] {
+  transition: opacity 0.25s ease-in-out;
+}
+
+/* Subtle image container placeholder styling to avoid layout jumps */
+.img-placeholder-card {
+  background-color: #111e33;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  animation: imgShimmer 2s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes imgShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
