@@ -40,6 +40,8 @@ html {
   background-color: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -633,3 +635,92 @@ header#main-header.scrolled .nav-container {
   transform: translateY(-3px);
 }
 
+
+
+/* ==========================================================================
+   TREATMENTS NAVBAR & DROPDOWN (DARK HIGH-CONTRAST THEME)
+   ========================================================================== */
+.treatment-dropdown-container {
+  background-color: #0f1a2c !important;
+  border: 1px solid #223859 !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.85), 0 0 1px rgba(197, 126, 109, 0.4) !important;
+}
+
+.treatment-dropdown-item {
+  color: #e2e8f0 !important;
+  transition: all 0.2s ease;
+}
+
+.treatment-dropdown-item:hover {
+  background-color: #182a44 !important;
+  color: #ffffff !important;
+}
+
+.treatment-dropdown-item .dropdown-item-title {
+  color: #ffffff !important;
+}
+
+.treatment-dropdown-item .dropdown-item-num {
+  color: #c57e6d !important;
+}
+
+.treatment-dropdown-item .dropdown-item-desc {
+  color: #94a3b8 !important;
+}
+
+.treatment-dropdown-item.active {
+  background-color: #182a44 !important;
+  border-color: #c57e6d !important;
+  box-shadow: 0 0 16px rgba(197, 126, 109, 0.35) !important;
+}
+
+.treatment-dropdown-item.active .dropdown-item-title {
+  color: #dfa294 !important;
+  font-weight: 700 !important;
+}
+
+.treatment-dropdown-item.active .dropdown-item-badge {
+  background-color: #c57e6d !important;
+  color: #ffffff !important;
+  border-color: #dfa294 !important;
+}
+
+.mobile-treatments-container {
+  background-color: #0f1a2c !important;
+  border: 1px solid #223859 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+.mobile-treatment-sublink {
+  color: #cbd5e1 !important;
+  transition: all 0.2s ease;
+}
+
+.mobile-treatment-sublink:hover {
+  color: #ffffff !important;
+  background-color: #182a44 !important;
+}
+
+.mobile-treatment-sublink.active {
+  color: #dfa294 !important;
+  font-weight: 700 !important;
+  background-color: #182a44 !important;
+  border-left: 3px solid #c57e6d !important;
+  padding-left: 0.65rem !important;
+  box-shadow: inset 0 0 12px rgba(197, 126, 109, 0.25) !important;
+}
+
+/* Global Mobile Touch & Responsiveness Enhancements */
+@media (max-width: 640px) {
+  button, .btn-gold, .btn-outline, .quick-action-card, a.rounded-xl, a.rounded-2xl {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-container {
+    height: 3.75rem;
+  }
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+}
