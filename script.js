@@ -21,14 +21,14 @@ window.SERVICE_CHANNELS = SERVICE_CHANNELS;
 const CLINIC_INFO = {
   name: 'GuruKrupa Skin Clinic',
   doctor: 'Dr. Mohit Giri',
-  qualifications: 'MBBS, DDV, FAD (Germany)',
+  qualifications: 'MBBS, M.Derma, FAD (Germany)',
   phone: '+919130009003',
   phoneDisplay: '+91 91300 09003',
   whatsapp: '919130009003',
   email: 'care@gurukrupaskinclinic.com',
   address: 'Shop No. 20, Siddhivinayak Utopia, opp. Redcliff School, Sector 20, Ulwe, Navi Mumbai, Maharashtra 410206',
   hours: 'Mon - Sun: 10:30 AM - 2:30 PM & 5:30 PM - 10:00 PM',
-  consultationFee: '₹500'
+  consultationFee: '₹700'
 };
 
 const NORWOOD_DATA = {
@@ -1793,7 +1793,7 @@ function selectNorwoodStage(stageNum) {
 let bookingState = {
   day: 'Today',
   slot: '11:00 AM',
-  doctor: 'Dr. Mohit Giri (MBBS, DDV, FAD Germany)',
+  doctor: 'Dr. Mohit Giri (MBBS, M.Derma, FAD Germany)',
   treatment: 'Hair Transplant & Follicle Restoration',
   patientName: '',
   phone: '',
