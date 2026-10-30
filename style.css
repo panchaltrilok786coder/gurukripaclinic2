@@ -734,7 +734,7 @@ img {
 }
 
 /* Smooth transition for lazy-loaded images */
-img[loading="lazy"] {
+img {
   transition: opacity 0.25s ease-in-out;
 }
 

@@ -1008,7 +1008,7 @@ async function renderCasesEditorList() {
       <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
         <div class="flex items-center gap-1.5">
           <div class="w-10 h-10 rounded-lg overflow-hidden border border-[#2d4b77] bg-black shrink-0 relative group">
-            <img src="${images.before}" alt="Before" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <img src="${images.before}" alt="Before" class="w-full h-full object-cover" decoding="async" />
             <label class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[9px] text-amber-300 font-bold cursor-pointer">
               Edit
               <input type="file" accept="image/*" class="hidden case-custom-input" data-case-id="${caseItem.id}" data-type="before" />
@@ -1016,7 +1016,7 @@ async function renderCasesEditorList() {
           </div>
           <span class="text-[10px] text-neutral-500">→</span>
           <div class="w-10 h-10 rounded-lg overflow-hidden border border-[#2d4b77] bg-black shrink-0 relative group">
-            <img src="${images.after}" alt="After" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <img src="${images.after}" alt="After" class="w-full h-full object-cover" decoding="async" />
             <label class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[9px] text-emerald-400 font-bold cursor-pointer">
               Edit
               <input type="file" accept="image/*" class="hidden case-custom-input" data-case-id="${caseItem.id}" data-type="after" />
