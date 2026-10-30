@@ -2184,7 +2184,7 @@ function initApp() {
 const CLINICAL_CASES_DB = {
   1: {
     title: "Dark Lip Melanosis & Border Lightening",
-    image: "/assets/cases/case_01.jpg",
+    image: "/assets/cases/case_01.webp",
     category: "Laser Aesthetics",
     diagnosis: "Severe exogenous & post-inflammatory vermilion hyperpigmentation with irregular melanin clumping.",
     protocol: "3 Sessions Q-Switched Nd:YAG (532nm/1064nm) laser toning paired with topical lip depigmenting balm.",
@@ -2193,7 +2193,7 @@ const CLINICAL_CASES_DB = {
   },
   2: {
     title: "Severe Cheek & Jawline Inflammatory Acne Clearance",
-    image: "/assets/cases/case_02.jpg",
+    image: "/assets/cases/case_02.webp",
     category: "Clinical Dermatology",
     diagnosis: "Grade 4 Nodulocystic Acne with painful inflammatory papules, follicular plugging, and early erythematous scarring.",
     protocol: "Low-dose oral isotretinoin regimen, targeted salicylic acid clinical peels, and non-comedogenic barrier restoration.",
@@ -2202,7 +2202,7 @@ const CLINICAL_CASES_DB = {
   },
   3: {
     title: "Parietal Scalp Coin-Shaped Patch Full Recovery",
-    image: "/assets/cases/case_03.jpg",
+    image: "/assets/cases/case_03.webp",
     category: "Trichology & Scalp",
     diagnosis: "Acute Alopecia Areata (focal autoimmune follicular arrest) with distinct exclamation-mark hairs on dermoscopy.",
     protocol: "Monthly targeted intralesional triamcinolone micro-injections, topical minoxidil 5% co-therapy, and immunomodulators.",
@@ -2211,7 +2211,7 @@ const CLINICAL_CASES_DB = {
   },
   4: {
     title: "Crown Vertex Focal Hair Loss Restoration",
-    image: "/assets/cases/case_04.jpg",
+    image: "/assets/cases/case_04.webp",
     category: "Trichology & Scalp",
     diagnosis: "Early-stage Crown Alopecia Areata with perifollicular inflammation and miniaturization.",
     protocol: "Bi-weekly Platelet-Rich Plasma (PRP) scalp therapy paired with peptide follicle serums and nutritional correction.",
@@ -2220,7 +2220,7 @@ const CLINICAL_CASES_DB = {
   },
   5: {
     title: "Crown Vertex & Midline Density Restoration",
-    image: "/assets/cases/case_05.jpg",
+    image: "/assets/cases/case_05.webp",
     category: "Trichology & Scalp",
     diagnosis: "Ludwig Grade II Female Pattern Hair Loss (FPHL) with widened central parting line and severe telogen shedding.",
     protocol: "Multi-factorial medical trichology: dual DHT blockers, topical nanosomal minoxidil, and customized meso-cocktail infusions.",
@@ -2229,7 +2229,7 @@ const CLINICAL_CASES_DB = {
   },
   6: {
     title: "Coarse Chin & Submental Hirsutism Removal",
-    image: "/assets/cases/case_06.jpg",
+    image: "/assets/cases/case_06.webp",
     category: "Medical Lasers",
     diagnosis: "Hormonal Hirsutism with dense, deep-rooted coarse terminal hairs on submental chin and jawline.",
     protocol: "6 Sessions Triple-Wavelength Diode & Nd:YAG Laser Hair Reduction with contact sapphire cooling.",
@@ -2238,7 +2238,7 @@ const CLINICAL_CASES_DB = {
   },
   7: {
     title: "Severe Dystrophic Great Toenail Regeneration",
-    image: "/assets/cases/case_07.jpg",
+    image: "/assets/cases/case_07.webp",
     category: "Nail Disorders",
     diagnosis: "Distal Subungual Onychomycosis with severe subungual hyperkeratosis, crumbling onycholysis, and nail plate yellowing.",
     protocol: "Oral pulse terbinafine therapy, surgical nail plate chemical debridement, and topical ciclopirox lacquer.",
@@ -2247,7 +2247,7 @@ const CLINICAL_CASES_DB = {
   },
   8: {
     title: "Microscopic Hair Shaft Caliber & Survival Analysis",
-    image: "/assets/cases/case_08.jpg",
+    image: "/assets/cases/case_08.webp",
     category: "Trichology & Scalp",
     diagnosis: "Diffuse Androgenetic Alopecia (Grade III) with severe vellus miniaturization and yellow dots on trichoscopy.",
     protocol: "Comprehensive medical trichology protocol: oral finasteride micro-dosing, high-concentration growth factor concentrates (GFC).",
@@ -2256,7 +2256,7 @@ const CLINICAL_CASES_DB = {
   },
   9: {
     title: "Chronic Lower Leg Pruritic Eczematous Plaque Healing",
-    image: "/assets/cases/case_09.jpg",
+    image: "/assets/cases/case_09.webp",
     category: "Clinical Dermatology",
     diagnosis: "Severe Stasis Eczema & Lichen Simplex Chronicus with intensely pruritic, hyperkeratotic, excoriated plaques.",
     protocol: "Barrier-repair ceramide therapy, potent short-contact topical anti-inflammatory ointments, and compression guidance.",
@@ -2265,7 +2265,7 @@ const CLINICAL_CASES_DB = {
   },
   10: {
     title: "Stubborn Lip Hyperpigmentation Lightening",
-    image: "/assets/cases/case_10.jpg",
+    image: "/assets/cases/case_10.webp",
     category: "Laser Aesthetics",
     diagnosis: "Chronic post-inflammatory lip melanosis and vermilion border darkening refractory to ordinary balms.",
     protocol: "Sequential Q-Switched Nd:YAG Laser toning and gentle arginine-lactic depigmenting peel sessions.",
@@ -2274,7 +2274,7 @@ const CLINICAL_CASES_DB = {
   },
   11: {
     title: "Velvety Neck Hyperpigmentation & Texture Smoothing",
-    image: "/assets/cases/case_11.jpg",
+    image: "/assets/cases/case_11.webp",
     category: "Clinical Dermatology",
     diagnosis: "Severe Acanthosis Nigricans of the posterior and lateral neck with thickened, velvety hyperkeratotic skin folds.",
     protocol: "Metabolic dietary counselling, topical keratolytics (glycolic 12% + urea 20%), and gentle micro-exfoliation peels.",
@@ -2283,7 +2283,7 @@ const CLINICAL_CASES_DB = {
   },
   12: {
     title: "Anterior Neck Crease Skin Tags & Pigmentation Rejuvenation",
-    image: "/assets/cases/case_12.jpg",
+    image: "/assets/cases/case_12.webp",
     category: "Dermatosurgery",
     diagnosis: "Multiple Acrochordons (skin tags) clustering along transverse anterior cervical skin creases with post-friction pigmentation.",
     protocol: "Ultra-fine High-Frequency Radiofrequency (RF) micro-cautery excision under topical eutectic local anesthesia.",
@@ -2292,7 +2292,7 @@ const CLINICAL_CASES_DB = {
   },
   13: {
     title: "Deep Toe Plantar Wart Cryo-Ablation",
-    image: "/assets/cases/case_13.jpg",
+    image: "/assets/cases/case_13.webp",
     category: "Viral Lesions / Nails",
     diagnosis: "Endophytic Plantar Verruca (HPV-induced) on toe pulp causing severe point-tenderness and disrupted skin striations.",
     protocol: "Controlled liquid nitrogen cryosurgery paired with salicylic-lactic keratolytic application and RF core ablation.",
@@ -2301,7 +2301,7 @@ const CLINICAL_CASES_DB = {
   },
   14: {
     title: "Nasal Tip Exophytic Cutaneous Wart Vaporization",
-    image: "/assets/cases/case_14.jpg",
+    image: "/assets/cases/case_14.webp",
     category: "Dermatosurgery / STI",
     diagnosis: "Cutaneous Verruca Vulgaris (HPV) presenting as a conspicuous hyperkeratotic nodule on the nasal tip.",
     protocol: "Precision Radiosurgical Micro-Vaporization with micro-wire loop preserving underlying cartilage anatomy.",
@@ -2310,7 +2310,7 @@ const CLINICAL_CASES_DB = {
   },
   15: {
     title: "Multiple Facial & Temple Skin Tags (DPN) Removal",
-    image: "/assets/cases/case_15.jpg",
+    image: "/assets/cases/case_15.webp",
     category: "Dermatosurgery",
     diagnosis: "Dermatosis Papulosa Nigra (DPN) & pedunculated facial acrochordons scattered across malar cheeks and periorbital temples.",
     protocol: "Non-ablative Radiofrequency pinpoint desiccation with magnifying loupes to avoid post-inflammatory hypopigmentation.",
@@ -2319,7 +2319,7 @@ const CLINICAL_CASES_DB = {
   },
   16: {
     title: "Nevus of Ota Deep Dermal Pigmentation Clearance",
-    image: "/assets/cases/case_16.jpg",
+    image: "/assets/cases/case_16.webp",
     category: "Medical Lasers",
     diagnosis: "Unilateral Oculodermal Melanocytosis (Nevus of Ota) with slate-gray/blue dermal dendritic melanocytes across temple and cheek.",
     protocol: "Medical-grade Q-Switched 1064nm Nd:YAG Laser selective photothermolysis targeting deep dermal melanosomes.",
@@ -2328,7 +2328,7 @@ const CLINICAL_CASES_DB = {
   },
   17: {
     title: "Cheek Pustular Acne & Red Marks Resolution",
-    image: "/assets/cases/case_17.jpg",
+    image: "/assets/cases/case_17.webp",
     category: "Clinical Dermatology",
     diagnosis: "Moderate-to-Severe Acne Vulgaris with prominent Post-Inflammatory Erythema (PIE) and active follicular pustules.",
     protocol: "Azelaic acid 20% clinical regimen, topical clindamycin/benzoyl peroxide gel, and gentle barrier-repair hydration.",
@@ -2337,7 +2337,7 @@ const CLINICAL_CASES_DB = {
   },
   18: {
     title: "Perioral & Vermilion Border Hyperpigmentation Lightening",
-    image: "/assets/cases/case_18.jpg",
+    image: "/assets/cases/case_18.webp",
     category: "Laser Aesthetics",
     diagnosis: "Exogenous smoker's melanosis and sun-induced lip hyperpigmentation with dull bluish-brown lip border.",
     protocol: "Dual-pulse Q-Switched Nd:YAG laser toning combined with clinical kojic-arbutin pigment inhibitor maintenance.",
@@ -2346,7 +2346,7 @@ const CLINICAL_CASES_DB = {
   },
   19: {
     title: "Malar Melasma & Solar Lentigines Transformation",
-    image: "/assets/cases/case_19.jpg",
+    image: "/assets/cases/case_19.webp",
     category: "Medical Lasers",
     diagnosis: "Mixed epidermal-dermal Melasma and solar lentigines forming irregular brown patches across bilateral cheekbones.",
     protocol: "Low-fluence Nd:YAG laser toning, tranexamic acid mesotherapy, and strict SPF50+ PA++++ broad-spectrum mineral photoprotection.",
@@ -2355,7 +2355,7 @@ const CLINICAL_CASES_DB = {
   },
   20: {
     title: "Upper & Lower Eyelid Margin Skin Tag Excision",
-    image: "/assets/cases/case_20.jpg",
+    image: "/assets/cases/case_20.webp",
     category: "Dermatosurgery",
     diagnosis: "Delicate periocular acrochordons located on mobile upper and lower lid margins causing ocular irritation and cosmetic concern.",
     protocol: "High-precision Ellman radiofrequency micro-needle excision with protective corneal eye-shield and topical anesthesia.",
