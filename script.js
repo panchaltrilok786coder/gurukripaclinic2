@@ -21,7 +21,7 @@ window.SERVICE_CHANNELS = SERVICE_CHANNELS;
 const CLINIC_INFO = {
   name: 'GuruKrupa Skin Clinic',
   doctor: 'Dr. Mohit Giri',
-  qualifications: 'MBBS, M.Derma, FAD (Germany)',
+  qualifications: 'Degree - MBBS +M.D +DDV +FAD (Germany) +  Dip in allergies',
   phone: '+919130009003',
   phoneDisplay: '+91 91300 09003',
   whatsapp: '919130009003',
@@ -1793,7 +1793,7 @@ function selectNorwoodStage(stageNum) {
 let bookingState = {
   day: 'Today',
   slot: '11:00 AM',
-  doctor: 'Dr. Mohit Giri (MBBS, M.Derma, FAD Germany)',
+  doctor: 'Dr. Mohit Giri (Degree - MBBS +M.D +DDV +FAD (Germany) +  Dip in allergies)',
   treatment: 'Hair Transplant & Follicle Restoration',
   patientName: '',
   phone: '',
