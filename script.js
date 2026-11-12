@@ -9,9 +9,9 @@
 // by simply setting these flags to `true`.
 // ==========================================================================
 const SERVICE_CHANNELS = {
-  callsActive: false,               // Phone calls: set to true to activate
-  whatsappActive: false,            // WhatsApp messaging: set to true to activate
-  appointmentBookingActive: false   // Appointment booking: set to true to activate
+  callsActive: true,                // Phone calls: active
+  whatsappActive: true,             // WhatsApp messaging: active
+  appointmentBookingActive: true    // Appointment booking: active
 };
 window.SERVICE_CHANNELS = SERVICE_CHANNELS;
 
