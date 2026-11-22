@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gurukrupa Skin Clinic</title>
+  <script>
+    (function () {
+      var l = window.location;
+      var segments = l.pathname.split('/').filter(Boolean);
+      var isGithubPages = l.hostname.endsWith('.github.io');
+      var basePath = '/';
+      var routePath = '';
+
+      if (isGithubPages && segments.length >= 1) {
+        basePath = '/' + segments[0] + '/';
+        routePath = segments.slice(1).join('/');
+      } else {
+        routePath = segments.join('/');
+      }
+
+      try {
+        if (routePath) {
+          sessionStorage.setItem('gk_spa_redirect', routePath);
+        }
+      } catch (e) {}
+
+      var targetUrl = l.origin + basePath + (routePath ? '?route=' + encodeURIComponent(routePath) : '');
+      l.replace(targetUrl);
+    })();
+  </script>
+</head>
+<body></body>
+</html>

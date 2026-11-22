@@ -356,9 +356,100 @@ const VALID_PAGES = [
   'appointment'
 ];
 
-function navigateTo(pageId) {
+const ALL_KNOWN_ROUTES = new Set([
+  ...VALID_PAGES,
+  ...Object.keys(ROUTE_ALIASES)
+]);
+
+function detectBasePath() {
+  let path = (window.location.pathname || '/').replace(/\/index\.html$/i, '/');
+  const segments = path.split('/').filter(Boolean);
+
+  if (segments.length >= 2) {
+    const lastTwo = `${segments[segments.length - 2]}/${segments[segments.length - 1]}`.toLowerCase();
+    if (ALL_KNOWN_ROUTES.has(lastTwo)) {
+      const baseSegs = segments.slice(0, -2);
+      return baseSegs.length ? `/${baseSegs.join('/')}/` : '/';
+    }
+  }
+  if (segments.length >= 1) {
+    const lastOne = segments[segments.length - 1].toLowerCase();
+    if (ALL_KNOWN_ROUTES.has(lastOne)) {
+      const baseSegs = segments.slice(0, -1);
+      return baseSegs.length ? `/${baseSegs.join('/')}/` : '/';
+    }
+  }
+
+  return segments.length ? `/${segments.join('/')}/` : '/';
+}
+
+const APP_BASE_PATH = detectBasePath();
+
+function buildCleanUrl(pageId) {
+  return pageId === 'home' ? APP_BASE_PATH : `${APP_BASE_PATH}${pageId}`;
+}
+
+function normalizeRouteName(raw) {
+  if (!raw) return 'home';
+  const cleaned = String(raw)
+    .replace(/^#\/?/, '')
+    .replace(/^\/+|\/+$/g, '')
+    .replace(/^index\.html$/i, '')
+    .trim()
+    .toLowerCase();
+  if (!cleaned) return 'home';
+  const aliased = ROUTE_ALIASES[cleaned] || cleaned;
+  return VALID_PAGES.includes(aliased) ? aliased : 'home';
+}
+
+function resolveRouteFromLocation() {
+  // 1. Restore clean route redirected from GitHub Pages 404.html
+  try {
+    const storedRoute = sessionStorage.getItem('gk_spa_redirect');
+    if (storedRoute) {
+      sessionStorage.removeItem('gk_spa_redirect');
+      return { pageId: normalizeRouteName(storedRoute), needsReplace: true };
+    }
+  } catch (e) {
+    // Ignore storage access errors in restricted contexts
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const queryRoute = params.get('route');
+  if (queryRoute) {
+    return { pageId: normalizeRouteName(queryRoute), needsReplace: true };
+  }
+
+  // 2. Support legacy #/ links and immediately clean them to hash-free URLs
+  if (window.location.hash && window.location.hash.startsWith('#/')) {
+    return { pageId: normalizeRouteName(window.location.hash), needsReplace: true };
+  }
+
+  // 3. Resolve directly from pathname relative to APP_BASE_PATH
+  const pathname = window.location.pathname || '/';
+  const hasIndexHtml = /\/index\.html$/i.test(pathname);
+  const cleanPath = pathname.replace(/\/index\.html$/i, '/');
+  let relative = cleanPath;
+  if (relative.startsWith(APP_BASE_PATH)) {
+    relative = relative.slice(APP_BASE_PATH.length);
+  }
+  const pageId = normalizeRouteName(relative);
+  const needsReplace = hasIndexHtml || Boolean(window.location.hash === '#/' || window.location.hash === '#');
+  return { pageId, needsReplace };
+}
+
+function navigateTo(pageId, options = {}) {
+  const activeEvent = options.event || (typeof window !== 'undefined' ? window.event : null);
+  if (
+    activeEvent &&
+    activeEvent.type === 'click' &&
+    (activeEvent.metaKey || activeEvent.ctrlKey || activeEvent.shiftKey || activeEvent.altKey || activeEvent.button > 0)
+  ) {
+    return;
+  }
+
   isNavigating = true;
-  pageId = ROUTE_ALIASES[pageId] || pageId;
+  pageId = normalizeRouteName(pageId);
 
   const pages = document.querySelectorAll('.page-view');
   pages.forEach(p => p.classList.add('hidden'));
@@ -366,11 +457,24 @@ function navigateTo(pageId) {
   const target = document.getElementById(`page-${pageId}`);
   if (target) {
     target.classList.remove('hidden');
-    const targetHash = pageId === 'home' ? '#/' : `#/${pageId}`;
-    if (window.location.hash !== targetHash) {
-      window.location.hash = targetHash;
+
+    if (options.updateHistory !== false && window.location.protocol !== 'file:' && window.history && window.history.pushState) {
+      const targetUrl = buildCleanUrl(pageId);
+      const currentFull = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      try {
+        if (options.replace) {
+          window.history.replaceState({ pageId }, '', targetUrl);
+        } else if (currentFull !== targetUrl) {
+          window.history.pushState({ pageId }, '', targetUrl);
+        }
+      } catch (err) {
+        // Ignore history API restrictions in sandboxed environments
+      }
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (options.scroll !== false) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   const isTreatmentCategory = [
@@ -465,15 +569,18 @@ function navigateTo(pageId) {
   }, 100);
 }
 
-function handleHashChange() {
+function handleRouteChange(e) {
   if (isNavigating) return;
-  let rawHash = window.location.hash.replace('#/', '').replace('#', '').trim();
-  rawHash = ROUTE_ALIASES[rawHash] || rawHash;
-  if (VALID_PAGES.includes(rawHash)) {
-    navigateTo(rawHash);
-  } else {
-    navigateTo('home');
+  if (e && e.state && e.state.pageId) {
+    navigateTo(e.state.pageId, { updateHistory: false });
+    return;
   }
+  const { pageId, needsReplace } = resolveRouteFromLocation();
+  navigateTo(pageId, {
+    updateHistory: needsReplace,
+    replace: needsReplace,
+    scroll: Boolean(e)
+  });
 }
 
 // ==========================================
@@ -2099,12 +2206,18 @@ Object.assign(window, {
 // 16. INITIALIZATION ON DOM READY
 // ==========================================
 function initApp() {
-  window.addEventListener('hashchange', handleHashChange);
-  handleHashChange();
+  window.addEventListener('popstate', handleRouteChange);
+  window.addEventListener('hashchange', handleRouteChange);
+  const initialRoute = resolveRouteFromLocation();
+  navigateTo(initialRoute.pageId, {
+    updateHistory: true,
+    replace: true,
+    scroll: false
+  });
 
   initHeaderScroll();
 
-  // Channel deactivation interceptors for Call and WhatsApp links
+  // Channel deactivation & clean-URL SPA navigation interceptors
   document.addEventListener('click', (e) => {
     // Intercept phone calls
     const telAnchor = e.target.closest('a[href^="tel:"]');
@@ -2127,6 +2240,25 @@ function initApp() {
         'WhatsApp Desk Paused',
         'WhatsApp messaging (+91 91300 09003) is temporarily paused. Please check back shortly.'
       );
+      return;
+    }
+
+    // Keep internal SPA links hash-free without triggering full page reloads
+    const spaLink = e.target.closest('a[onclick*="navigateTo"]');
+    if (spaLink && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && e.button === 0) {
+      e.preventDefault();
+      return;
+    }
+
+    // Smooth-scroll in-page section anchors without adding # to the URL
+    const sectionLink = e.target.closest('a[href^="#skin-"]');
+    if (sectionLink) {
+      const targetId = sectionLink.getAttribute('href').slice(1);
+      const sectionEl = document.getElementById(targetId);
+      if (sectionEl) {
+        e.preventDefault();
+        sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
       return;
     }
   }, true);
