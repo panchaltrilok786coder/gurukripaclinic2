@@ -36,7 +36,7 @@ const NORWOOD_DATA = {
     title: 'Stage 2: Mild Temple Recession',
     desc: 'Slight recession of hairline around temples. Follicles are early in miniaturization.',
     grafts: '1,000 – 1,500 Grafts',
-    protocol: '1 Minor FUE Session or 4 PRP Cycles',
+    protocol: '1 Minor FUE Session or 4 GFC Cycles',
     advice: 'High response rate for stabilizing native hair with biological GFC.'
   },
   3: {
@@ -50,7 +50,7 @@ const NORWOOD_DATA = {
     title: 'Stage 4: Significant Frontal Loss & Crown Vertex Thinning',
     desc: 'Frontal hairline bridge thin or absent; distinct bald circle developing at crown.',
     grafts: '2,500 – 3,200 Grafts',
-    protocol: 'Sapphire Micro-FUE + 6 PRP Sessions',
+    protocol: 'Sapphire Micro-FUE + 6 GFC Sessions',
     advice: 'Stabilizes vertex thinning while micro-slits restore frontal density.'
   },
   5: {
@@ -269,13 +269,13 @@ const CLINICAL_CASES = [
     category: 'Hair & Scalp',
     categoryKey: 'hair',
     title: 'Hair Fall Control & Hair Growth Stimulation',
-    protocol: 'PRP & GFC Hair Growth Therapy (6 Sessions)',
+    protocol: 'GFC Hair Growth Therapy (6 Sessions)',
     doctor: 'Gurukrupa Skin Clinic • Dr. Mohit Giri (MD Dermatology)',
     patient: 'Male, 48 Years',
     duration: '6 Sessions (6 Months)',
-    summary: 'Autologous growth factor concentrate (GFC) micro-injections stimulating dormant hair follicles and producing dense crown recovery.',
+    summary: 'Concentrated growth factor (GFC) scalp therapy stimulating dormant hair follicles and supporting dense crown recovery.',
     baseImage: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=900&auto=format&fit=crop',
-    conditionType: 'prp_hair_male',
+    conditionType: 'gfc_hair_male',
     conditionLabel: 'Crown Thinning & Follicle Miniaturization'
   },
   {
@@ -773,7 +773,7 @@ function generateCoherentOverlayDataUrl(baseImgUrl, conditionType) {
           ctx.arc(px, py, pr, 0, Math.PI * 2);
           ctx.fill();
         });
-      } else if (conditionType.includes('prp_hair')) {
+      } else if (conditionType.includes('gfc_hair')) {
         // Crown thinning overlay
         const hairGrad = ctx.createRadialGradient(400, 160, 20, 400, 160, 130);
         hairGrad.addColorStop(0, 'rgba(220, 185, 160, 0.55)');
@@ -2346,7 +2346,7 @@ const CLINICAL_CASES_DB = {
     image: "https://panchaltrilok786coder.github.io/gurukripaclinic2/public/assets/cases/case_04.webp",
     category: "Trichology & Scalp",
     diagnosis: "Early-stage Crown Alopecia Areata with perifollicular inflammation and miniaturization.",
-    protocol: "Bi-weekly Platelet-Rich Plasma (PRP) scalp therapy paired with peptide follicle serums and nutritional correction.",
+    protocol: "Bi-weekly Growth Factor Concentrate (GFC) scalp therapy paired with peptide follicle serums and nutritional correction.",
     result: "Full closure of vertex thinning patch with robust terminal hair caliber and zero recurrence.",
     timeline: "14 Weeks"
   },
